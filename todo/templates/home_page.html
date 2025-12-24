@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'mystyle.css' %}">
+
+</head>
+<body class="bg-gray-500">
+    <nav class="bg-blue-600 p-2">    
+        <div class="flex items-center ">   
+            <img src="/media/image.jpg"  class="h-20 w-20 object-fill rounded-full" alt="My Logo">
+            <a href="" class="p-4 text-2xl font-bold text-white">Task Management</a>     
+        </div>
+    </nav>
+    
+    <p class="body text-2xl font-bold"> MyStatic CSS test</p>
+
+    <div class="container mx-auto p-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Are you sure you want to delete task: {{ task.title }}?</p>
+<form method="post">
+        {% csrf_token %}
+        <button type="submit" class="text-2xl py-2 px-3 bg-red-600 rounded">Confirm Delete</button>
+        <br/>
+        <br/>
+        <a href="{% url 'task_list' %}" class="text-xl py-2 px-3 bg-blue-600 rounded">Cancel</a>
+</form>
+{% endblock %}
