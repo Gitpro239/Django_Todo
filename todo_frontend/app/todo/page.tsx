@@ -13,7 +13,7 @@ interface Todo {
   priority: 'LOW' | 'MEDIUM' | 'HIGH';
 }
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
 
 export default function TodoPage() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -34,7 +34,7 @@ export default function TodoPage() {
     try {
       setLoading(true);
       setError('');
-      const response = await fetch(`${API_BASE_URL}/todos`, {
+      const response = await fetch(`${API_BASE_URL}/todos/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export default function TodoPage() {
     try {
       setSubmitting(true);
       setError('');
-      const response = await fetch(`${API_BASE_URL}/todos`, {
+      const response = await fetch(`${API_BASE_URL}/todos/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ export default function TodoPage() {
 
   const toggleTodo = async (id: number, currentCompleted: boolean) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/todo/${id}/`, {
+      const response = await fetch(`${API_BASE_URL}/todos/${id}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export default function TodoPage() {
 
   const deleteTodo = async (id: number) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/todo/${id}/`, {
+      const response = await fetch(`${API_BASE_URL}/todos/${id}/`, {
         method: 'DELETE',
       });
 
@@ -250,7 +250,7 @@ export default function TodoPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full from-indigo-600 to-purple-600 text-black py-2 px-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   {submitting ? (
                     <>
